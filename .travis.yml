@@ -8,7 +8,7 @@ before_script:
 - sudo apt install -y --no-install-recommends unzip tree >/dev/null 2>&1
 script:
 - export root=$(pwd)
-- mkdir -p /tmp/online/client /tmp/online/full /tmp/offline/client /tmp/offline/full
+- mkdir -p /tmp/{online,offline,simple-stupid}
 # online
 - cd $root/samples/online
 - bash gradlew clean build
@@ -19,3 +19,8 @@ script:
 - bash gradlew clean build
 - unzip -d /tmp/offline/client ./build/libs/offline-client.jar
 - unzip -d /tmp/offline/full   ./build/libs/offline.jar
+# dump
+- cd $root/samples/dump
+- bash gradlew clean build
+- unzip -d /tmp/simple-stupid/client ./build/libs/simple-stupid-client.jar
+- unzip -d /tmp/simple-stupid/full   ./build/libs/simple-stupid.jar

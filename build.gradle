@@ -32,15 +32,14 @@ class EjbClientExtension {
 
 class EjbClientPlugin implements Plugin<Project> {
 
-  void apply(final Project project) {
+  void apply(Project project) {
 
-    final EjbClientExtension extension = project.extensions.create("ejbClient", EjbClientExtension)
+    EjbClientExtension extension = project.extensions.create("ejbClient", EjbClientExtension)
 
     project.afterEvaluate {
-
       project.apply(plugin: "java")
 
-      final Task createEjb = project.task("createEjb", type: Jar) { task ->
+      Task ejbClientJar = project.task("ejbClientJar", type: Jar) { task ->
 
         task.classifier = "client"
         task.from project.sourceSets.main.output
@@ -50,7 +49,7 @@ class EjbClientPlugin implements Plugin<Project> {
         }
       }
 
-      project.jar.dependsOn(createEjb)
+      project.jar.dependsOn(ejbClientJar)
     }
   }
 }

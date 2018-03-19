@@ -39,10 +39,8 @@ class EjbClientPlugin implements Plugin<Project> {
       project.apply(plugin: "java")
 
       def ejbClientJar = project.task("ejbClientJar", type: Jar) { task ->
-
         task.classifier = "client"
         task.from project.sourceSets.main.output
-
         extension.filters.each {
           task.include it
         }

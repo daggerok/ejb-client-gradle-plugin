@@ -7,11 +7,15 @@ before_script:
 - sudo apt update -y >/dev/null 2>&1 || true
 - sudo apt install -y --no-install-recommends unzip tree >/dev/null 2>&1
 script:
-- tree src
+- export root=$(pwd)
+- mkdir -p /tmp/online/client /tmp/online/full /tmp/offline/client /tmp/offline/full
+# online
+- cd $root/samples/online
 - bash gradlew clean build
-- ls build
-- ls build/libs
-# ejb-client jar
-- unzip -d /tmp ./build/libs/ejb-client-gradle-plugin-client.jar
-# fill jar
-- unzip -d /tmp ./build/libs/ejb-client-gradle-plugin.jar
+- unzip -d /tmp/online/client ./build/libs/online-client.jar
+- unzip -d /tmp/online/full   ./build/libs/online.jar
+# offline
+- cd $root/samples/offline
+- bash gradlew clean build
+- unzip -d /tmp/offline/client ./build/libs/offline-client.jar
+- unzip -d /tmp/offline/full   ./build/libs/offline.jar

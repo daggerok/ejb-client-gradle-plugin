@@ -1,0 +1,62 @@
+/**
+ * Dear Gradle, thank you for that guide: https://docs.gradle.org/current/userguide/custom_plugins.html
+ *
+ * Plugin usage:
+ *
+ * online:
+ *
+ * <pre><code>
+ *
+ *   echo 'apply from: "https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle"' >> build.gradle
+ *   gradle clean build
+ *
+ * </code></pre>
+ *
+ * offline:
+ *
+ * <pre><code>
+ *
+ *   wget -O ejb-client-plugin.gradle https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle
+ *   echo 'apply from: "ejb-client-plugin.gradle"' >> >> build.gradle
+ *   gradle clean build
+ *
+ * </code></pre>
+ */
+
+class EjbClientExtension {
+  String[] filters = [
+      "**/api/*.*",
+  ]
+}
+
+class EjbClientPlugin implements Plugin<Project> {
+
+  void apply(final Project project) {
+
+    final EjbClientExtension extension = project.extensions.create("ejbClient", EjbClientExtension)
+
+    project.afterEvaluate {
+
+      project.apply(plugin: "java")
+
+      final Task createEjb = project.task("createEjb", type: Jar) { task ->
+
+        task.classifier = "client"
+        task.from project.sourceSets.main.output
+
+        extension.filters.each {
+          task.include it
+        }
+      }
+
+      project.jar.dependsOn(createEjb)
+    }
+  }
+}
+
+apply plugin: EjbClientPlugin
+
+ejbClient.filters = [
+    "**/api/*.*",
+    "**/api/**/*.*",
+]

@@ -31,15 +31,14 @@ class EjbClientExtension {
 }
 
 class EjbClientPlugin implements Plugin<Project> {
-
   void apply(Project project) {
 
-    EjbClientExtension extension = project.extensions.create("ejbClient", EjbClientExtension)
+    def extension = project.extensions.create("ejbClient", EjbClientExtension)
 
     project.afterEvaluate {
       project.apply(plugin: "java")
 
-      Task ejbClientJar = project.task("ejbClientJar", type: Jar) { task ->
+      def ejbClientJar = project.task("ejbClientJar", type: Jar) { task ->
 
         task.classifier = "client"
         task.from project.sourceSets.main.output

@@ -9,8 +9,10 @@ Any classes inside *.api.* package will be added to EJB client jar.
 
 Classes to be packaged:
 
-- `**/api/*.*`
-- `**/api/**/*.*`
+----
+**/api/*.*
+**/api/**/*.*
+----
 
 == installation and usage
 

@@ -25,7 +25,8 @@
 
 class EjbClientExtension {
   String[] filters = [
-      "**/api/*.*",
+    "**/api/*.*",
+    "**/api/**/*.*",
   ]
 }
 
@@ -55,8 +56,3 @@ class EjbClientPlugin implements Plugin<Project> {
 }
 
 apply plugin: EjbClientPlugin
-
-ejbClient.filters = [
-    "**/api/*.*",
-    "**/api/**/*.*",
-]

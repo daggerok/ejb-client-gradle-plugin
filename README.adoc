@@ -1,4 +1,4 @@
-= EJB Client Gradle Plugin
+= EJB Client Gradle Plugin image:https://travis-ci.org/daggerok/ejb-client-gradle-plugin.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/ejb-client-gradle-plugin"]
 
 //tag::content[]
 
@@ -12,8 +12,29 @@ Classes to be packaged:
 - `**/api/*.*`
 - `**/api/**/*.*`
 
-== usage
+== installation and usage
 
+=== online
 
+.simply update ypur build.gradle
+[source,gradle]
+----
+echo 'apply from: "https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle"' >> build.gradle
+gradle clean build
+ls -lah build/libs
+----
+
+=== offline
+
+If you don't wanna download plugin over and over, just commit it in your repo
+
+.download
+[source,bash]
+----
+wget -O ejb-client-plugin.gradle https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle
+echo 'apply from: "ejb-client-plugin.gradle"'>> build.gradle
+gradle clean build
+ls -lah build/libs
+----
 
 //end::content[]

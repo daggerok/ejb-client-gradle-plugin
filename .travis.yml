@@ -5,10 +5,12 @@ language: java
 install: true
 before_script:
 - sudo apt update -y >/dev/null 2>&1 || true
-- sudo apt install -y --no-install-recommends unzip >/dev/null 2>&1
+- sudo apt install -y --no-install-recommends unzip tree >/dev/null 2>&1
 script:
 - tree src
 - bash gradlew clean build
+- ls build
+- ls build/libs
 # ejb-client jar
 - unzip -d /tmp ./build/libs/ejb-client-gradle-plugin-client.jar
 # fill jar

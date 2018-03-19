@@ -5,15 +5,10 @@
  *
  * online:
  *
- * - build.gradle:
- *
  * <pre><code>
  *
- *   # add in build.gradle:
- *   apply from: "https://github.../ejb-client-gradle-plugin/build.gradle"
- *
- *   $ gradle build
- *   $ ls -lah build/libs | grep "-client"
+ *   echo 'apply from: "https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle"' >> build.gradle
+ *   gradle clean build
  *
  * </code></pre>
  *
@@ -21,14 +16,9 @@
  *
  * <pre><code>
  *
- *   # download and commit in repository
- *   $ wget -O ejb-client-plugin.gradle https://github.../ejb-client-gradle-plugin/build.gradle
- *
- *   # add in build.gradle:
- *   apply from: "ejb-client-plugin.gradle"
- *
- *   $ gradle build
- *   $ ls -lah build/libs | grep "-client"
+ *   wget -O ejb-client-plugin.gradle https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle
+ *   echo 'apply from: "ejb-client-plugin.gradle"' >> >> build.gradle
+ *   gradle clean build
  *
  * </code></pre>
  */

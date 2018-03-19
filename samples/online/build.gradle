@@ -7,3 +7,5 @@
 
 apply plugin: "java"
 apply from: "https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle"
+apply plugin: "java"
+apply plugin: "java"

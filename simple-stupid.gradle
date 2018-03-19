@@ -1,0 +1,10 @@
+apply plugin: "java"
+
+task ejbClientJar(type: Jar) {
+  classifier = "client"
+  from sourceSets.main.output
+  include "**/api/*.*"
+  include "**/api/**/*.*"
+}
+
+jar.dependsOn(ejbClientJar)

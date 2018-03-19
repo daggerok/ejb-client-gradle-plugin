@@ -18,7 +18,7 @@ Classes to be packaged:
 
 === online
 
-.simply update ypur build.gradle
+.simply update your build.gradle
 [source,gradle]
 ----
 echo 'apply from: "https://raw.githubusercontent.com/daggerok/ejb-client-gradle-plugin/master/build.gradle"' >> build.gradle
@@ -28,7 +28,7 @@ ls -lah build/libs
 
 === offline
 
-If you don't wanna download plugin over and over, just commit it in your repo
+If you wont download plugin over and over, just commit it into your repo
 
 .download
 [source,bash]

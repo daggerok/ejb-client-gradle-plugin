@@ -1,0 +1,72 @@
+/**
+ * Dear Gradle, thank you for that guide: https://docs.gradle.org/current/userguide/custom_plugins.html
+ *
+ * Plugin usage:
+ *
+ * online:
+ *
+ * - build.gradle:
+ *
+ * <pre><code>
+ *
+ *   # add in build.gradle:
+ *   apply from: "https://github.../ejb-client-gradle-plugin/build.gradle"
+ *
+ *   $ gradle build
+ *   $ ls -lah build/libs | grep "-client"
+ *
+ * </code></pre>
+ *
+ * offline:
+ *
+ * <pre><code>
+ *
+ *   # download and commit in repository
+ *   $ wget -O ejb-client-plugin.gradle https://github.../ejb-client-gradle-plugin/build.gradle
+ *
+ *   # add in build.gradle:
+ *   apply from: "ejb-client-plugin.gradle"
+ *
+ *   $ gradle build
+ *   $ ls -lah build/libs | grep "-client"
+ *
+ * </code></pre>
+ */
+
+class EjbClientExtension {
+  String[] filters = [
+      "**/api/*.*",
+  ]
+}
+
+class EjbClientPlugin implements Plugin<Project> {
+
+  void apply(final Project project) {
+
+    final EjbClientExtension extension = project.extensions.create("ejbClient", EjbClientExtension)
+
+    project.afterEvaluate {
+
+      project.apply(plugin: "java")
+
+      final Task createEjb = project.task("createEjb", type: Jar) { task ->
+
+        task.classifier = "client"
+        task.from project.sourceSets.main.output
+
+        extension.filters.each {
+          task.include it
+        }
+      }
+
+      project.jar.dependsOn(createEjb)
+    }
+  }
+}
+
+apply plugin: EjbClientPlugin
+
+ejbClient.filters = [
+    "**/api/*.*",
+    "**/api/**/*.*",
+]

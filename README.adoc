@@ -1,0 +1,19 @@
+= EJB Client Gradle Plugin
+
+//tag::content[]
+
+== what?
+
+Helps you generate ejb-client jar to be used as provided dependency JavaEE client apps.
+Any classes inside *.api.* package will be added to EJB client jar.
+
+Classes to be packaged:
+
+- `**/api/*.*`
+- `**/api/**/*.*`
+
+== usage
+
+
+
+//end::content[]
